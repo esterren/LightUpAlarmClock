@@ -1,0 +1,7 @@
+@startuml
+
+package "Light Up Alarm Clock" {
+
+}
+
+@enduml

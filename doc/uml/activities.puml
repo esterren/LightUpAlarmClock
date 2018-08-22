@@ -1,0 +1,4 @@
+@startuml
+(*)  --> "Display date & time"
+-->(*)
+@enduml
