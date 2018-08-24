@@ -18,8 +18,8 @@ class LcdLayoutAbs(object):
         # self.glcd.init()
 
     @abc.abstractmethod
-    def displayTime(self):
+    def displayDateTime(self):
         '''
-        displays the current Time
+        displays the current Date and Time
         '''
         return

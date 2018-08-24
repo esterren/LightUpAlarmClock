@@ -1,0 +1,24 @@
+@startuml
+title
+    Light Up Alarm Clock - Use cases
+    v 1.0
+end title
+
+:User: as user
+(Read Time, Date & Weather) as (Idle)
+(Set Alarm Clock #n) as (SetAl)
+(Set Alarm Sound Source) as (SetAlSound)
+(Set Alarm Light) as (SetAlLight)
+(Turn Reading-Light on) as (LightOn)
+(Turn Reading-Light off) as (LightOff)
+(Dim Reading-Light) as (LightDim)
+
+left to right direction
+user --> (Idle)
+user --> (SetAl)
+(SetAl) <|-- (SetAlSound)
+(SetAl) <|-- (SetAlLight)
+user --> (LightOn)
+user --> (LightOff)
+user --> (LightDim)
+@enduml

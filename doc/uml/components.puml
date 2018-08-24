@@ -2,6 +2,21 @@
 
 package "Light Up Alarm Clock" {
 
+    package "app" {
+
+    }
+
+    package "appifc" {
+        abstract class DisplayAbs
+
+
+    }
+
+    package "ui" {
+
+    }
+    package "sim" {
+    }
 }
 
 @enduml

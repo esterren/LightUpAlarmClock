@@ -7,8 +7,8 @@ TODO
 '''
 import threading
 
-from UserInterruptThread import UserInterruptThread
-from ClockThread import ClockThread
+from luac.userinterruptthread import UserInterruptThread
+from luac.clockthread import ClockThread
 
 if __name__ == '__main__':
     #     l = ForcedSquareLayout();
