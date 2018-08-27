@@ -24,7 +24,7 @@ class UserInterruptThread(threading.Thread):
         while 1:
             uin = input()
             self.lock.acquire()
-            print("input: " + uin)
-            print("sleep " + str(self.t) + " sec.")
+            # print("input: " + uin)
+            # print("sleep " + str(self.t) + " sec.")
             time.sleep(self.t)
             self.lock.release()

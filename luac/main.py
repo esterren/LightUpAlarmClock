@@ -14,7 +14,6 @@ from luac.sim.simdisplay import SimDisplay
 
 if __name__ == '__main__':
     #     l = ForcedSquareLayout();
-    #     print(l.displayTime())
     lock = threading.Lock()
     display = SimDisplay()
     threads = []
@@ -26,11 +25,5 @@ if __name__ == '__main__':
     # execute Threads
     t1.start()
     t2.start()
-
-    # threads.append(t1)
-    # threads.append(t2)
-    #
-    # for t in threads:
-    #     t.join()
 
     print("exiting main")
