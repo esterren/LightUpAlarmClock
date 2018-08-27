@@ -4,18 +4,20 @@ TODO
 '''
 import threading
 import time
+from luac.appifc.displayabs import DisplayAbs
 
 class UserInterruptThread(threading.Thread):
     '''
     TODO classdocs
     '''
 
-    def __init__(self, lock):
+    def __init__(self, lock, display:DisplayAbs):
         '''
         Constructor
         '''
         threading.Thread.__init__(self)
         self.lock = lock
+        self.display = display
         self.t = 5
 
     def run(self):

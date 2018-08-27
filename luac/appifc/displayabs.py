@@ -7,7 +7,7 @@ TODO
 import abc
 
 
-class LcdLayoutAbs(object):
+class DisplayAbs(object):
     __metaclass__ = abc.ABCMeta
     '''
     TODO classdocs
