@@ -16,15 +16,15 @@ class ClockThread(threading.Thread):
         Constructor
         '''
         threading.Thread.__init__(self)
-        self.lock = lock
-        self.display = display
+        self._lock = lock
+        self._display = display
         # self.layout = ForcedSquareLayout()
 
     def run(self):
-        while 1:
-            self.lock.acquire()
-            self.display.displayDateTime()
+        while True:
+            self._lock.acquire()
+            self._display.displayDateTime()
             #self.layout.displayTime()
             #print(time.strftime("%H:%M:%S",time.gmtime()))
-            self.lock.release()
+            self._lock.release()
             time.sleep(1)

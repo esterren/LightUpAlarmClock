@@ -21,7 +21,7 @@ class UserInterruptThread(threading.Thread):
         self.t = 5
 
     def run(self):
-        while 1:
+        while True:
             uin = input()
             self.lock.acquire()
             # print("input: " + uin)
