@@ -5,29 +5,37 @@ TODO
 
 @author: esterren
 '''
-import threading
+import urwid
 import time
-from luac.userinterruptthread import UserInterruptThread
-from luac.clockthread import ClockThread
-from luac.appifc.displayabs import DisplayAbs
-from luac.sim.simdisplay import SimDisplay
+import sys
+
+class Clock:
+
+    def keypress(self, key):
+        if key in ('q', 'Q'):
+            raise urwid.ExitMainLoop()
+
+    def setup_view(self):
+        self.clock_txt = urwid.BigText(
+            time.strftime('%H:%M:%S'), urwid.font.HalfBlock5x4Font())
+        self.view = urwid.Padding(self.clock_txt, 'center', width='clip')
+        self.view = urwid.AttrMap(self.view, 'body')
+        self.view = urwid.Filler(self.view, 'middle')
+
+    def main(self):
+        self.setup_view()
+        loop = urwid.MainLoop(
+            self.view, palette=[('body', 'black', '')],
+            unhandled_input=self.keypress)
+        loop.set_alarm_in(1, self.refresh)
+        loop.run()
+
+    def refresh(self, loop=None, data=None):
+        self.setup_view()
+        loop.widget = self.view
+        loop.set_alarm_in(1, self.refresh)
+
 
 if __name__ == '__main__':
-
-    #     l = ForcedSquareLayout();
-    lock = threading.Lock()
-    display = SimDisplay()
-    #threads = []
-
-    while True:
-        display.displayDateTime()
-        time.sleep(0.5)
-    # create Threads
-    #t1 = ClockThread(lock, display)
-    #t2 = UserInterruptThread(lock, display)
-
-    # execute Threads
-    #t1.start()
-    #t2.start()
-
-    #print("exiting main")
+    clock = Clock()
+    sys.exit(clock.main())
