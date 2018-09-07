@@ -5,20 +5,34 @@ title
 end title
 
 :User: as user
-(Read Time, Date & Weather) as (Idle)
-(Set Alarm Clock #n) as (SetAl)
-(Set Alarm Sound Source) as (SetAlSound)
-(Set Alarm Light) as (SetAlLight)
-(Turn Reading-Light on) as (LightOn)
-(Turn Reading-Light off) as (LightOff)
-(Dim Reading-Light) as (LightDim)
+package "LUAC - Light Up Alarm Clock" {
+    (Set Date & Time) as (SetDateTime)
+    (Poll Temperature & Humidity Sensor) as (PollSensor)
+    (Read Time, Date & Weather) as (Idle)
+    (Set Alarm Clock #n) as (SetAl)
+    (Set Alarm Sound Source) as (SetAlSound)
+    (Set Alarm Light) as (SetAlLight)
+    (Push Snooze Button) as (SnoozeBtn)
+    (Delay Alarm) as (DelayAl)
+    (Turn Reading-Light on) as (LightOn)
+    (Turn Reading-Light off) as (LightOff)
+    (Turn LCD Backlight on) as (LcdLightOn)
+    (Turn LCD Backlight off) as (LcdLightOff)
+    (Dim Reading-Light) as (LightDim)
 
-left to right direction
-user --> (Idle)
-user --> (SetAl)
-(SetAl) <|-- (SetAlSound)
-(SetAl) <|-- (SetAlLight)
-user --> (LightOn)
-user --> (LightOff)
-user --> (LightDim)
+    left to right direction
+    user --> (Idle)
+    (Idle) <|-- (SetDateTime)
+    (Idle) <|-- (PollSensor)
+    user --> (SetAl)
+    (SetAl) <|-- (SetAlSound)
+    (SetAl) <|-- (SetAlLight)
+    (SnoozeBtn) <|-- (LcdLightOn)
+    (SnoozeBtn) <|-- (LcdLightOff)
+    (SnoozeBtn) <|-- (DelayAl)
+    user --> (LightOn)
+    user --> (LightOff)
+    user --> (LightDim)
+    user --> (SnoozeBtn)
+}
 @enduml
