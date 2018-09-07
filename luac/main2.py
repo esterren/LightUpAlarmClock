@@ -12,12 +12,15 @@ class ClockView(Frame):
         layout = Layout([1], fill_frame=True)
         self._screen = screen
         self.add_layout(layout)
-        self._clock_label = Label(label="00:00:00")
-        layout.add_widget(self._clock_label)
+        self._date_label = Label(label="")
+        self._time_label = Label(label="00:00:00")
+        layout.add_widget(self._date_label)
+        layout.add_widget(self._time_label)
         self.fix()
 
     def tick(self):
-        self._clock_label.text = time.strftime("%H:%M:%S", time.gmtime())
+        self._date_label.text = time.strftime("%d.%m.%y")
+        self._time_label.text = time.strftime("%H:%M:%S")
         self._screen.force_update()
 
 
