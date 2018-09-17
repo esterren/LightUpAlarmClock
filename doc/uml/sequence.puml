@@ -2,10 +2,31 @@
 actor User
 participant MainThread
 participant ClockThread
+database disk
 
-MainThread <-- ClockThread: Time tick
+== Initialization ==
+activate MainThread
+MainThread -> disk: load config
+MainThread -> MainThread: init Env.
+MainThread ->> ClockThread: start
+activate ClockThread
+...
+== Idle ==
 
-User --> MainThread: press Snooze Button
+MainThread <- ClockThread: timer tick
+MainThread -> MainThread: display time & sensor data
+...
+== Set Alarm ==
+
+User -> MainThread: press 'Set Alarm' Button
+MainThread -> MainThread: acquire Lock
+activate MainThread #Orange
+ClockThread ->x MainThread: timer tick
+User -> MainThread: Add/Edit Alarm
+User -> MainThread: Set Time, Weekday,\n Sound & Light
+User -> MainThread: Save Alarm
+MainThread -> disk: store Alarm
+MainThread -> MainThread: release Lock
 
 
 @enduml
